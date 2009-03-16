@@ -62,7 +62,38 @@ class TestComic extends PHPUnit_Framework_TestCase {
         ); 
     }
     
+    /**
+     * @dataProvider badIsValidIDs
+     */
+    public function testIsBadValid($id) {
+        $a = new Comic();
+        $a->id = $id;
+        $this->assertFalse($a->is_valid());
+    }
     
+    public function badIsValidIDs() {
+        return array(
+            array(null),
+            array(""),
+            array(array())
+        );
+    }
+    
+    /**
+     * @dataProvider goodIsValidIDs
+     */
+    public function testIsValid($id) {
+        $a = new Comic();
+        $a->id = $id;
+        $this->assertTrue($a->is_valid());
+    }
+    
+    public function goodIsValidIDs() {
+        return array(
+            array("a"),
+            array("1")
+        ); 
+    }
 }
 
 ?>

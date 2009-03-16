@@ -3,7 +3,12 @@
 require_once(dirname(__FILE__) . '/../lib/ComicException.php');
 
 class Comic {
-    public function __construct($info) {
+    /**
+     * The identifier for this Comic object. Used for sorting.
+     */
+    public $id;
+    
+    public function __construct($info = array()) {
          if (!is_array($info)) { throw new ComicException("must be an array"); }
          
          foreach ($info as $key => $value) {
@@ -22,6 +27,17 @@ class Comic {
          }
     }
   
+    /**
+     * Return true if the Comic object is valid ($id is a non-boolean scalar with a length greater than 0)
+     * @return boolean True if the object is valid;
+     */
+    public function is_valid() {
+         return is_scalar($this->id) && !is_bool($this->id) && (strlen($this->id) > 0);
+    }
+  
+    /**
+     * Process a directory or an array of comic file info and generate Comic objects based on the data.
+     */
     public static function process_directory($directory) {
         if (!is_array($directory) && !is_string($directory)) { throw new ComicException("must be an array or a string"); }
         
