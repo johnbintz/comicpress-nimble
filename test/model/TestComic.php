@@ -19,7 +19,8 @@ class TestComic extends PHPUnit_Framework_TestCase {
                 array("2006-01-01.txt"),
                 array(new Comic(array('date' => '2006-01-01',
                                       'title' => '2006-01-01',
-                                      'copy' => "")))
+                                      'copy' => "",
+                                      'id' => strtotime('2006-01-01'))))
             )
         ); 
     }

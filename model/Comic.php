@@ -25,6 +25,8 @@ class Comic {
                 $this->{$key} = $value;
             }
          }
+         
+         if (!isset($this->id) && isset($this->date)) { $this->id = $this->date; }
     }
   
     /**
